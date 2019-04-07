@@ -8,7 +8,8 @@ import '@okta/okta-signin-widget/dist/css/okta-theme.css';
   componentDidMount() {
     const el = ReactDOM.findDOMNode(this);
     this.widget = new OktaSignIn({
-      baseUrl: this.props.baseUrl
+      baseUrl: this.props.baseUrl,
+      logo:'logo.png'
     });
     this.widget.renderEl({el}, this.props.onSuccess, this.props.onError);
   }

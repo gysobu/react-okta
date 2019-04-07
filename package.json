@@ -5,6 +5,7 @@
   "dependencies": {
     "@okta/okta-react": "^1.2.0",
     "@okta/okta-signin-widget": "^2.18.0",
+    "bootstrap-react": "^0.3.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-router-dom": "^5.0.0",
