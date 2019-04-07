@@ -1,20 +1,31 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router,Route} from 'react-router-dom'
+import {Security,SecureRoute,ImplicitCallback} from '@okta/okta-react';
 import './App.css';
-import Navbar from './components/layOut/Navbar'
-import Home from './components/pages/Home'
-import staff from './components/pages/Staff'
+import Navbar from './components/layOut/Navbar';
+import Home from './components/pages/Home';
+import Staff from './components/pages/Staff';
+import Login from './components/auth/Login';
+function onAuthRequired({history}){
+ history.push('/login');
+}
 class App extends Component {
   render() {
     return (
       <Router>
-      <div> 
+      <Security issuer='https://dev-550886.okta.com/oauth2/default'
+                  client_id='0oafk9cjrviH4zIp3356'
+                  redirect_uri={window.location.origin + '/implicit/callback'}
+                    onAuthRequired={onAuthRequired}>
+      <div className="App"> 
       <Navbar/>
       <div className="container"> 
       <Route path="/" exact={true} component={Home}/>
-      <Route path="/staff" exact={true} component={staff}/>
+      <SecureRoute path="/staff" exact={true} component={Staff}/>
+      <Route path='/login' render={() => <Login baseUrl='https://dev-550886.okta.com' />} />
       </div>
       </div>
+      </Security>  
       </Router>
     );
   }
